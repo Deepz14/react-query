@@ -1,34 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Home from './components/Home';
+import SuperHeroes from './components/SuperHeroes';
+import RQSuperHeroes from './components/RQSuperHeroes';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const queryClient = new QueryClient();
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to='/'>Home</Link>
+              </li>
+              <li>
+                <Link to='/super-heroes'>Traditional Super Heroes</Link>
+              </li>
+              <li>
+                <Link to='/rq-super-heroes'>RQ Super Heroes</Link>
+              </li>
+            </ul>
+          </nav>
+          <Routes>
+            <Route path='/super-heroes' element={<SuperHeroes />} />
+            <Route path='/rq-super-heroes/:heroId' element={<RQSuperHeroes />} />
+            <Route path='/rq-super-heroes' element={<RQSuperHeroes />} />
+            <Route path='/' element={<Home />} />
+          </Routes>
+        </div>
+      </Router>
+    </QueryClientProvider>
   )
 }
 
