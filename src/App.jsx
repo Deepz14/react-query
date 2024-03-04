@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import DynamicQuery from './components/DynamicQueries';
+import DependentQuery from './components/DependentQueries';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
             </ul>
           </nav>
           <Routes>
+            <Route path='dependent-query' element={<DependentQuery email={'vishwas@example.com'} />} />
             <Route path='/dynamic-query' element={<DynamicQuery heroIds={[1, 3]} />} />
             <Route path='/parallel-query' element={<ParallelQueries />} />
             <Route path='/rq-super-heroes/:heroId' element={<RQSuperHeroe />} />
