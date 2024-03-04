@@ -2,6 +2,7 @@ import './App.css'
 import Home from './components/Home';
 import SuperHeroes from './components/SuperHeroes';
 import RQSuperHeroes from './components/RQSuperHeroes';
+import RQSuperHeroe from './components/RQSuperHeroe';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -28,6 +29,7 @@ function App() {
             </ul>
           </nav>
           <Routes>
+            <Route path='/rq-super-heroes/:heroId' element={<RQSuperHeroe />} />
             <Route path='/super-heroes' element={<SuperHeroes />} />
             <Route path='/rq-super-heroes/:heroId' element={<RQSuperHeroes />} />
             <Route path='/rq-super-heroes' element={<RQSuperHeroes />} />
