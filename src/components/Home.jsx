@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Stepper from "./Stepper";
 
 const Home = ( ) => {
     const [tCount, setTCount] = useState([1]);
@@ -40,6 +41,9 @@ const Home = ( ) => {
             <button onClick={addTextBox}>Add Text Box</button>
             <button onClick={removeTextBox}>Remove Text Box</button>
             <button onClick={clearTextBox}>Clear</button>
+            <div className="stepper-wrapper">
+                <Stepper />
+            </div>
         </div>
     )
 
