@@ -10,6 +10,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import DynamicQuery from './components/DynamicQueries';
 import DependentQuery from './components/DependentQueries';
 import PaginatedQuery from './components/PaginatedQueries';
+import InfiniteQuery from './components/InfiniteQueries';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
             </ul>
           </nav>
           <Routes>
+            <Route path='/infinite-query' element={<InfiniteQuery />} />
             <Route path='/paginated-query' element={<PaginatedQuery />} />
             <Route path='/dependent-query' element={<DependentQuery email={'vishwas@example.com'} />} />
             <Route path='/dynamic-query' element={<DynamicQuery heroIds={[1, 3]} />} />
