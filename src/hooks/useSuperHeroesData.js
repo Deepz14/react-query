@@ -24,9 +24,14 @@ export const useSuperHeroesData = (onSuccess, onError) => {
 export const useAddSuperHeroesData = () => {
     const queryClient = useQueryClient();
     return useMutation(addSuperHeroes, {
-        onSuccess: () => {
+        onSuccess: (data) => {
             // auto fetch data after mutation(new data added to the list))
-            queryClient.invalidateQueries('super-heroes');
+            //queryClient.invalidateQueries('super-heroes');
+
+            // handle mutation response
+            queryClient.setQueryData('super-heroes', (old) => {
+                return {...old, data: [...old.data, data.data]};
+            }); 
         },
         onError: (error) => {
             console.log("Error :", error);

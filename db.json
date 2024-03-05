@@ -24,6 +24,16 @@
       "id": "c1b4",
       "name": "Ironman",
       "alterEgo": "Tony Stark"
+    },
+    {
+      "id": "cd3f",
+      "name": "Black Widow",
+      "alterEgo": "Natasha Romanoff"
+    },
+    {
+      "id": "fc78",
+      "name": "Scarlett Witch",
+      "alterEgo": "Wanda Maximoff"
     }
   ],
   "friends": [
