@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "react-query"
 import axios from "axios";
+import { request } from "../utils/axios-interceptor";
 
 const fetchSuperHeroes = () => {
     return axios.get("http://localhost:8000/superheroes");
