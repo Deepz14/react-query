@@ -1,8 +1,12 @@
-import { useQuery } from "react-query"
+import { useQuery, useMutation, useQueryClient } from "react-query"
 import axios from "axios";
 
 const fetchSuperHeroes = () => {
     return axios.get("http://localhost:8000/superheroes");
+}
+
+const addSuperHeroes = (hero) => {
+    return axios.post("http://localhost:8000/superheroes", hero);
 }
 
 
@@ -14,4 +18,19 @@ export const useSuperHeroesData = (onSuccess, onError) => {
         //    return data.data.map(heros => heros.name);
         //}
     });
+}
+
+
+export const useAddSuperHeroesData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(addSuperHeroes, {
+        onSuccess: () => {
+            // auto fetch data after mutation(new data added to the list))
+            queryClient.invalidateQueries('super-heroes');
+        },
+        onError: (error) => {
+            console.log("Error :", error);
+        }
+    });
+
 }

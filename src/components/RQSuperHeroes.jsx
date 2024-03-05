@@ -1,8 +1,12 @@
 import { useQuery } from "react-query";
-import { useSuperHeroesData } from "../hooks/useSuperHeroesData";
+import { useSuperHeroesData, useAddSuperHeroesData } from "../hooks/useSuperHeroesData";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const RQSuperHeroes = () => {
+
+    const [name, setName] = useState('');
+    const [alterEgo, setAlterEgo] = useState('');
 
     const onSuccess = (data) => {
         console.log("Perform side effects onSuccess :", data);
@@ -30,6 +34,12 @@ const RQSuperHeroes = () => {
         // }
     //});
 
+    const { mutateAsync: addSuperHeroes } = useAddSuperHeroesData();
+
+    const addHero = () => {
+        addSuperHeroes({ name, alterEgo });
+    }
+
     console.log("isLoading :", isLoading, "isFetching :", isFetching)
 
     if (isLoading) {
@@ -42,6 +52,9 @@ const RQSuperHeroes = () => {
 
     return (
         <>
+            <input type="text" onChange={(e) => setName(e.target.value)} value={name} placeholder="name" />
+            <input type="text" onChange={(e) => setAlterEgo(e.target.value)} value={alterEgo} placeholder="alter ego" />
+            <button onClick={addHero}>Add Hero</button>
             <div>RQSuperHeroes</div>
             <button onClick={() => refetch()}>Refetch</button>
             {
