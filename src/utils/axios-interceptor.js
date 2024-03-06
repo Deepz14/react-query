@@ -10,7 +10,7 @@ export const request = ({...options}) => {
 
     const onSuccess = (response) => response;
     const onError = (error) => {
-        // optionally catch errors and add additional logging here
+        // optionally catch errors and add additional logging here..
         return error;
     };
 
